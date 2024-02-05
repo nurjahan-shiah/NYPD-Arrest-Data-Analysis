@@ -8,16 +8,35 @@ The dataset has been collected from: data.gov (https://catalog.data.gov/dataset/
 
 Goal: Investigate any seasonal trends in the dataset, such as increases in certain types of offences during specific times of the year.
 
-# To clean up the dataset, I'll focus on common data-cleaning tasks such as:
+### To clean up the dataset, I'll focus on common data-cleaning tasks such as:
 1. Removing duplicate rows.
 2. Handling missing values, by filling them with a placeholder (e.g. "Unknown" for categorical data) or dropping rows/columns with missing values.
 3. Ensuring consistent formatting for categorical data, such as capitalization and whitespace.
 
-Clean dataset: 
+Clean dataset: https://drive.google.com/drive/folders/1_Vg2_IeYzt_LcmkGwsE7Ue0E_8iBDpAn?usp=sharing 
 
 ## Result
 
+# Monthly Arrest Trends
+
+<img width="701" alt="image" src="https://github.com/nurjahan-shiah/NYPD-Arrest-Data-Analysis/assets/70992112/cf3c2567-3773-437a-9de3-5747e15569fc">
+
+
+The analysis of monthly arrest trends reveals how the number of arrests fluctuates throughout the year:
+
+1. January sees a significant number of arrests (18,817), which then slightly decreases in February (16,744).
+2. Arrest numbers begin to rise again in March (19,036), peaking in May (20,198), suggesting a possible increase in criminal activities or law enforcement actions during the spring.
+3. The summer months (June, July, August) also show high arrest numbers, with August having the highest (19,893) in this period.
+4. There's a noticeable peak in October (19,920), which could be attributed to specific events or enforcement campaigns.
+5. Arrest numbers slightly decrease towards the end of the year, with December having the lowest count (17,702).
+   
+    This trend reflects seasonal variations in criminal activity or changes in law enforcement focus. For instance, warmer months have an increase in certain types of offenses, like public order violations, due to more people being outdoors. Similarly, specific months might have targeted enforcement efforts that lead to spikes in arrests.
+   
 # Top 10 Specific Offense Descriptions Leading to Arrests
+
+<img width="891" alt="image" src="https://github.com/nurjahan-shiah/NYPD-Arrest-Data-Analysis/assets/70992112/e60dd18e-ad8a-4d1a-ab0c-f6fa86d0b2c4">
+
+
 1. Assault 3: 24,744 arrests
 2. Larceny, Petit from Open Areas: 23,820 arrests
 3. Assault 2,1, Unclassified: 15,496 arrests
@@ -30,6 +49,10 @@ Clean dataset:
 10. Theft of Services, Unclassified: 5,703 arrests
 
 # Top 10 Offense Categories Leading to Arrests
+
+<img width="892" alt="image" src="https://github.com/nurjahan-shiah/NYPD-Arrest-Data-Analysis/assets/70992112/404fdc74-bede-4cb2-b161-66b41dc55bc7">
+
+
 1. Assault 3 & Related Offenses: 33,839 arrests
 2. Petit Larceny: 23,888 arrests
 3. Felony Assault: 21,121 arrests
@@ -51,3 +74,4 @@ Patterns: Spotting which months show a higher occurrence rate for each offense. 
 
 Normalization: The data is normalized (scaled between 0 and 1 for each offense) to facilitate comparison across offenses that might vary widely in absolute numbers. A value of 1.00 indicates a month where the offence reached its peak frequency for the year, while lower values indicate lower frequencies relative to that peak.
 
+author @Nurjahan Shiah
