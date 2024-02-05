@@ -1,0 +1,67 @@
+/*
+Author: @Nurjahan Ahmed Shiah
+*/
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+data = pd.read_csv('NYPD_Arrest_Data__Year_to_Date_.csv')
+
+// Monthly arrest trend 
+
+# Converting ARREST_DATE to datetime format and extracting the month
+data['ARREST_DATE'] = pd.to_datetime(data['ARREST_DATE'])
+data['MONTH'] = data['ARREST_DATE'].dt.month
+
+# Group by month and count arrests
+monthly_arrests = data.groupby('MONTH').size()
+
+# Plot
+plt.figure(figsize=(10, 6))
+monthly_arrests.plot(kind='bar', color='cornflowerblue')
+plt.title('Monthly Arrest Trends')
+plt.xlabel('Month')
+plt.ylabel('Number of Arrests')
+plt.xticks(ticks=range(12), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], rotation=45)
+plt.grid(axis='y', linestyle='--')
+plt.show()
+
+//Top 10 Specific Offense Descriptions Leading to Arrests
+
+top_10_specific_offenses = data['PD_DESC'].value_counts().head(10)
+top_10_specific_offenses.plot(kind='barh', color='skyblue')
+plt.title('Top 10 Specific Offense Descriptions Leading to Arrests')
+plt.xlabel('Number of Arrests')
+plt.gca().invert_yaxis()  # To have the highest count at the top
+plt.show()
+
+//Top 10 Offense Categories Leading to Arrests
+
+top_10_offense_categories = data['OFNS_DESC'].value_counts().head(10)
+top_10_offense_categories.plot(kind='barh', color='lightgreen')
+plt.title('Top 10 Offense Categories Leading to Arrests')
+plt.xlabel('Number of Arrests')
+plt.gca().invert_yaxis()
+plt.show()
+
+//Heatmap for the Top 5 Offenses by Month
+
+# Filter data for top 5 offenses
+top_offenses = data['OFNS_DESC'].value_counts().head(5).index
+top_offenses_data = data[data['OFNS_DESC'].isin(top_offenses)]
+
+# Pivot table for heatmap
+pivot_table = top_offenses_data.pivot_table(index='MONTH', columns='OFNS_DESC', aggfunc='size', fill_value=0)
+pivot_normalized = pivot_table.div(pivot_table.max())  # Normalize
+
+# Plotting the heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(pivot_normalized, annot=True, cmap='Blues', fmt='.2f', linewidths=.5)
+plt.title('Seasonal Pattern of Top 5 Offenses by Month (Normalized Frequency)')
+plt.xlabel('Offense Description')
+plt.ylabel('Month')
+plt.yticks(ticks=np.arange(0.5, len(pivot_table.index), 1), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], rotation=0)
+plt.show()
+
